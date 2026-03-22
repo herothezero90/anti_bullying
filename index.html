@@ -1,175 +1,256 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harmony Initiative - School Anti-Bullying Program</title>
-    <link rel="icon" type="image/png" href="./media/favicon.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Red+Hat+Text:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Barrio&family=Changa+One:ital@0;1&family=Londrina+Shadow&family=Rampart+One&family=Rubik+Dirt&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Syne:wght@400..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-	<script src="
-https://cdn.jsdelivr.net/npm/luxon@3.5.0/build/global/luxon.min.js
-"></script>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Harmony Initiative - School Anti-Bullying Program</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface": "#1c1c15",
+              "on-secondary": "#ffffff",
+              "outline-variant": "#c5c5d4",
+              "background": "#fdf9ee",
+              "secondary-fixed": "#ffdbd0",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed-dim": "#d2c976",
+              "surface-container-highest": "#e6e2d8",
+              "secondary-container": "#ffccbc",
+              "surface-dim": "#dddacf",
+              "on-primary-fixed": "#00105c",
+              "on-primary-fixed-variant": "#293ca0",
+              "on-background": "#1c1c15",
+              "primary": "#24389c",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#cacfff",
+              "primary-fixed-dim": "#bac3ff",
+              "surface-container": "#f1eee3",
+              "outline": "#757684",
+              "tertiary-container": "#b5ad5d",
+              "inverse-surface": "#31312a",
+              "primary-container": "#3f51b5",
+              "error": "#ba1a1a",
+              "on-secondary-container": "#7a5448",
+              "surface": "#fdf9ee",
+              "surface-bright": "#fdf9ee",
+              "tertiary": "#666018",
+              "on-tertiary-container": "#454000",
+              "secondary": "#7b5549",
+              "surface-tint": "#4355b9",
+              "inverse-on-surface": "#f4f1e6",
+              "secondary-fixed-dim": "#edbbac",
+              "surface-container-low": "#f7f3e8",
+              "on-tertiary-fixed": "#1f1c00",
+              "tertiary-fixed": "#efe58f",
+              "on-secondary-fixed-variant": "#613e33",
+              "inverse-primary": "#bac3ff",
+              "on-tertiary": "#ffffff",
+              "primary-fixed": "#dee0ff",
+              "on-error": "#ffffff",
+              "surface-container-high": "#ece8dd",
+              "on-tertiary-fixed-variant": "#4e4800",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e6e2d8",
+              "on-surface-variant": "#454652",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed": "#2f140b"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #fdf9ee; }
+        h1, h2, h3, .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .harmony-gradient { background: linear-gradient(135deg, #24389c 0%, #3f51b5 100%); }
+        .soft-shadow { shadow-color: #1c1c15; box-shadow: 0 20px 40px -10px rgba(28, 28, 21, 0.06); }
+        .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .asymmetric-card { border-top-left-radius: 3rem; border-bottom-right-radius: 3rem; border-top-right-radius: 1.5rem; border-bottom-left-radius: 1.5rem; }
+        .custom-cursor { width: 40px; height: 40px; background-image: url('./media/Dizajn bez naslova.png'); background-size: cover; position: fixed; pointer-events: none; transform: translate(-50%, -50%); transition: transform 0.08s ease-out; z-index: 9999; display: none; }
+        @media (min-width: 1024px) { .custom-cursor { display: block; } }
+    </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-md">
-        <div class="container d-flex justify-content-between align-items-center">
-            <h1 class="mb-0 fw-bold">Harmony Initiative</h1>
-            <button class="navbar-toggler first-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <div class="animated-icon1"><span></span><span></span><span></span></div>
+<body class="text-on-surface">
+<div class="custom-cursor"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fdf9ee]/70 dark:bg-stone-900/70 backdrop-blur-xl">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="text-xl font-bold text-[#24389c] dark:text-indigo-300">
+                Harmony Initiative
+            </div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-[#1c1c15] dark:text-stone-300 hover:opacity-80 transition-opacity cursor-pointer" data-icon="camera_alt">camera_alt</span>
+<span class="material-symbols-outlined text-[#1c1c15] dark:text-stone-300 hover:opacity-80 transition-opacity cursor-pointer" data-icon="public">public</span>
+<span class="material-symbols-outlined text-[#1c1c15] dark:text-stone-300 hover:opacity-80 transition-opacity cursor-pointer" data-icon="group">group</span>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="max-w-7xl mx-auto px-6 py-16 md:py-24">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="space-y-8">
+<h1 class="text-4xl md:text-6xl font-extrabold text-primary leading-tight tracking-tight">
+                        CREATING SAFE AND SUPPORTIVE SCHOOL ENVIRONMENTS
+                    </h1>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="school">school</span>
+<p class="text-lg md:text-xl font-medium text-on-surface-variant">Classes for Teachers/Educators</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="groups">groups</span>
+<p class="text-lg md:text-xl font-medium text-on-surface-variant">Workshops for Students</p>
+</div>
+</div>
+<button id="cta-button" class="harmony-gradient text-on-primary px-10 py-4 rounded-full font-bold text-lg soft-shadow active:scale-95 transition-transform">
+                        Get Started
+                    </button>
+</div>
+<div class="relative">
+<div class="absolute -z-10 w-full h-full bg-secondary-container/30 blur-3xl rounded-full translate-x-10 translate-y-10"></div>
+<img alt="Inclusive learning environment" class="rounded-xl object-cover w-full h-[400px] md:h-[500px] soft-shadow" data-alt="Group of diverse students collaborating happily in a sunlit classroom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyCf3kRptS_exk6DhY4Cgjfa6XED2dfGfZRqcOO532FwBGMwXH5fJA1MGr5z_QmDqPu1hX6l9xZir--eSfhjoIO1oCAbm8VcAZDu4pPNIAnzMJ-71pqNArQtCV-wNG1dcOQmbYzo-b8llE9_BZxUa9XVOsS2x01zUHquyAREKXZyp4bBxJyVdlC3KUKwJzz2V58LLbbXyiGE_ezhggisM2amfoiiLUlsEFlgsaVA3KfWN1AO8qGhAyHP6khAcn9eC-j7qvxyO4RjE"/>
+</div>
+</div>
+</section>
+<!-- Services Grid -->
+<section class="services bg-surface-container-low py-20 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-sm font-bold tracking-widest text-secondary uppercase mb-4">APPLY NOW FOR</h2>
+<div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-lg soft-shadow hover:-translate-y-2 transition-transform duration-300 border border-outline-variant/15">
+<span class="material-symbols-outlined text-4xl text-primary mb-6 block" data-icon="newspaper">newspaper</span>
+<h3 class="card-title text-xl font-bold mb-4 text-primary">Anti-Bullying Newsletters</h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed">Stay updated with the latest strategies and community stories twice a month.</p>
+<button class="service-button text-secondary font-semibold flex items-center gap-2 hover:underline cursor-pointer">
+                            Learn More <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-lg soft-shadow hover:-translate-y-2 transition-transform duration-300 border border-outline-variant/15">
+<span class="material-symbols-outlined text-4xl text-primary mb-6 block" data-icon="devices">devices</span>
+<h3 class="card-title text-xl font-bold mb-4 text-primary">Screen Time Newsletters</h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed">Balanced advice on digital wellness for students in an interconnected world.</p>
+<button class="service-button text-secondary font-semibold flex items-center gap-2 hover:underline cursor-pointer">
+                            Learn More <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-lg soft-shadow hover:-translate-y-2 transition-transform duration-300 border border-outline-variant/15">
+<span class="material-symbols-outlined text-4xl text-primary mb-6 block" data-icon="psychology">psychology</span>
+<h3 class="card-title text-xl font-bold mb-4 text-primary">Teacher Training</h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed">Professional certification courses designed to help educators manage conflict.</p>
+<button class="service-button text-secondary font-semibold flex items-center gap-2 hover:underline cursor-pointer">
+                            Learn More <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-8 rounded-lg soft-shadow hover:-translate-y-2 transition-transform duration-300 border border-outline-variant/15">
+<span class="material-symbols-outlined text-4xl text-primary mb-6 block" data-icon="forum">forum</span>
+<h3 class="card-title text-xl font-bold mb-4 text-primary">Expert Workshops</h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed">Interactive sessions with child psychologists and mediation specialists.</p>
+<button class="service-button text-secondary font-semibold flex items-center gap-2 hover:underline cursor-pointer">
+                            Learn More <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- About & Meeting Section -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+<!-- Left: About Content -->
+<div class="bg-secondary-container/20 p-10 md:p-16 asymmetric-card relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="text-3xl font-bold text-primary mb-8">About us</h2>
+<div class="space-y-6 text-on-surface-variant leading-relaxed text-lg">
+<p>We believe every student deserves a learning environment where they feel seen, heard, and protected. The Harmony Initiative was founded to bridge the gap between administrative policy and classroom reality.</p>
+<p>Our approach is rooted in empathy-led mediation and proactive digital literacy. We don't just react to conflict; we build the social-emotional infrastructure to prevent it.</p>
+</div>
+<div class="mt-10 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="favorite">favorite</span>
+</div>
+<span class="font-bold text-primary">Committed to Student Wellbeing</span>
+</div>
+</div>
+</div>
+<!-- Right: Illustration & Meeting Card -->
+<div class="space-y-12">
+<div class="rounded-xl overflow-hidden soft-shadow">
+<img alt="Teacher talking to student" class="w-full h-64 object-cover" data-alt="A teacher and student having a supportive, friendly conversation in a park" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzs36WL7LKhPanQGrDf6v2CLfdmVtMMqpZOjSMSnfujUjMxJm2conYkgM9BfymgSFzkiyiMzdEXBOzXDkEdVnf3FUyqyaTlOiW-kwWOVMKGYNg_K_D0HdckUO3n48-Dz86NLLlbMgS0sHxwAZNhUJlU4Grq5fhQUSt0YNLrrkaZ7gLJo0Y1zIJZ5y-DN1FNSQglJlwcETB9ljsD-fAZBRahEiAs51sE6KKMgtD408_VsZu0oojpX4vj-hFJCMPyvkErTk_JZP-l4k"/>
+</div>
+<div class="bg-surface-container p-10 rounded-lg flex items-center justify-between gap-8 border border-outline-variant/15">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 bg-surface-container-lowest rounded-full flex items-center justify-center text-primary soft-shadow">
+<span class="material-symbols-outlined text-3xl" data-icon="calendar_today">calendar_today</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-surface mb-1">Schedule a Meeting</h3>
+<p id="current-date" class="text-on-surface-variant current-date-text">Let's discuss your school's needs.</p>
+</div>
+</div>
+<button class="get-in-touch-button bg-primary text-on-primary px-8 py-3 rounded-full font-bold hover:bg-primary-container transition-colors active:scale-95" onclick="document.getElementById('contactModal').classList.remove('hidden')">
+                            Get in Touch
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Contact Modal -->
+<div id="contactModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity">
+    <div class="bg-surface-container-lowest p-10 rounded-2xl shadow-2xl max-w-lg w-full mx-4 border border-outline-variant/15 relative">
+        <button onclick="document.getElementById('contactModal').classList.add('hidden')" class="absolute top-4 right-4 text-outline hover:text-on-surface">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <h2 class="text-3xl font-bold text-primary mb-2">Get in Touch</h2>
+        <p class="text-on-surface-variant mb-6">Fill out the form below and our team will get back to you to schedule an empathetic discussion about your school's needs.</p>
+        <form class="space-y-4">
+            <div>
+                <label class="block text-sm font-semibold text-on-surface mb-1">Your Name</label>
+                <input type="text" class="w-full bg-surface-container px-4 py-3 border-none rounded-lg focus:ring-2 focus:ring-primary/40 outline-none" placeholder="First Last">
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-on-surface mb-1">School Name</label>
+                <input type="text" class="w-full bg-surface-container px-4 py-3 border-none rounded-lg focus:ring-2 focus:ring-primary/40 outline-none" placeholder="Harmony School">
+            </div>
+            <button type="button" onclick="alert('Povezani smo! Poruka uspješno poslana.'); document.getElementById('contactModal').classList.add('hidden');" class="w-full mt-4 bg-primary text-on-primary px-8 py-3 rounded-full font-bold hover:bg-primary-container transition-colors">
+                Send Message
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex justify-content-center align-items-start">
-                    <li class="nav-item mx-2">
-                        <a class="nav-link d-flex align-items-center" href="#" aria-label="Instagram">
-                            <img src="./media/facebook-icon.png" alt="Instagram" class="custom-icon">
-                            <span class="ms-2 d-inline d-md-none card-text">Instagram</span>
-                        </a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link d-flex align-items-center" href="#" aria-label="Facebook">
-                            <img src="./media/twitter-icon.png" alt="Facebook" class="custom-icon">
-                            <span class="ms-2 d-inline d-md-none card-text">Facebook</span>
-                        </a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link d-flex align-items-center" href="#" aria-label="LinkedIn">
-                            <img src="./media/linkedin-icon.png" alt="LinkedIn" class="custom-icon">
-                            <span class="ms-2 d-inline d-md-none card-text">LinkedIn</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        </form>
+    </div>
+</div>
 
-    <div class="custom-cursor"></div>
-    
-	<section class="hero-section d-flex align-items-center min-vh-20">
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <!-- Text Section -->
-                <div class="col-12 col-md-6 d-flex flex-column justify-content-center text-center text-md-start">
-                    <div class="p-4">
-                        <h3 class="hero-title1 fw-bold ">CREATING</h3>
-                        <h3 class="hero-title2 fw-bold ">SAFE AND SUPPORTIVE</h3>
-                        <h3 class="hero-title3 fw-bold ">SCHOOL ENVIROMENTS</h3>
-                        <p class="hero-subtext lead">Classes for Teachers/Educators</p>
-                        <p class="hero-subtext lead">Workshops for Students</p>
-                        <button id="cta-button" class="btn btn-custom btn-cta" aria-label="Get Started">Get Started</button>
-                    </div>
-                </div>
-                <!-- Image Section -->
-                <div class="col-12 col-md-6 d-flex justify-content-center">
-                    <div class="ratio ratio-1x1 w-100">
-                        <img src="./media/hero.png" alt="Harmony Initiative Hero" class="img-fluid hero-image rounded">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-	
-
-    <main class="container my-1">
-        <h2 class="text-center h2">APPLY NOW FOR</h2>
-        <section class="row g-4 justify-content-center services">
-            <div class="col-12 col-md-6 col-lg-3">
-                <div class="card h-100 text-center">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Anti-Bullying Newsletters</h5>
-                        <p class="card-text">Stay informed with our comprehensive anti-bullying resources.</p>
-                        <button class="btn mt-auto service-button" aria-label="Learn More about Anti-Bullying Newsletters">Learn More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-3">
-                <div class="card h-100 text-center">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Screen Time Newsletters</h5>
-                        <p class="card-text">Manage and optimize screen time effectively.</p>
-                        <button class="btn mt-auto service-button" aria-label="Learn More about Screen Time Newsletters">Learn More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-3">
-                <div class="card h-100 text-center">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Teacher Training</h5>
-                        <p class="card-text">Empower your teachers with our specialized training programs.</p>
-                        <button class="btn mt-auto service-button" aria-label="Learn More about Teacher Training">Learn More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-3">
-                <div class="card h-100 text-center">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Expert Workshops</h5>
-                        <p class="card-text">Bring experts to your school for insightful workshops.</p>
-                        <button class="btn mt-auto service-button" aria-label="Learn More about Expert Workshops">Learn More</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <section class="description-calendar-section py-5">
-			<div class="container">
-					<div class="row">
-							<!-- About Us -->
-							<div class="col-12 col-lg-6 d-flex flex-column justify-content-between">
-									<div class="description-div p-4 h-100">
-											<h2>About us</h2>
-											<p>
-													The Harmony Initiative is dedicated to fostering a safe and supportive environment in schools.
-													Our program educates teachers and educators on effective strategies to prevent and address bullying.
-													Through comprehensive workshops, we empower students to build empathy and respect for one another.
-													Our anti-bullying newsletters provide up-to-date resources and best practices for creating positive school cultures.
-													We believe that every student deserves a nurturing space to learn and grow without fear of harassment.
-													By equipping educators with the tools they need, we aim to reduce incidents of bullying and promote kindness among peers.
-													Our interactive workshops engage students in meaningful conversations about inclusivity and cooperation.
-													Additionally, we offer tailored training sessions that address the unique challenges faced by modern classrooms.
-													The Harmony Initiative strives to create lasting change by instilling values of respect, understanding, and mutual support.
-													Join us in our mission to make schools bully-free and harmonious places for all.
-											</p>
-									</div>
-							</div>
-	
-							<div class="col-12 col-lg-6">
-									<div class="d-flex flex-column">
-											<!-- Image -->
-											<div class="image-container">
-												<img src="./media/image_2.png" alt="About Us Image" class="img-fluid rounded">
-										</div>
-											<!-- Schedule -->
-											<div class="schedule-meeting-div p-4 d-flex flex-column align-items-center mb-4">
-													<div class="d-flex align-items-center mb-3">
-															<i class="bi bi-calendar-event calendar-icon me-2"></i>
-															<h3 class="mb-0">Schedule a Meeting</h3>
-													</div>
-													<p id="current-date" class="current-date-text text-center mb-4"></p>
-													<button class="btn btn-custom get-in-touch-button" aria-label="Get in Touch" data-bs-toggle="modal" data-bs-target="#getInTouchModal">
-															Get in Touch
-													</button>
-											</div>
-	
-									</div>
-							</div>
-					</div>
-			</div>
-	</section>
-
-	 <footer class="text-center text-lg-start">
-        <div class="container p-2">
-            <p class="text-center mb-0">© 2025 Developed by Karla Lenard</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts.js"></script>
-</body>
-</html>
+<!-- Footer -->
+<footer class="bg-[#f7f3e8] dark:bg-stone-800 w-full py-12">
+<div class="flex flex-col items-center justify-center gap-4 w-full px-8 text-center">
+<div class="flex gap-8 mb-4">
+<a class="text-[#7b5549] dark:text-stone-400 text-sm hover:text-[#24389c] dark:hover:text-indigo-300 transition-colors" href="#">Privacy Policy</a>
+<a class="text-[#7b5549] dark:text-stone-400 text-sm hover:text-[#24389c] dark:hover:text-indigo-300 transition-colors" href="#">Terms of Service</a>
+<a class="text-[#7b5549] dark:text-stone-400 text-sm hover:text-[#24389c] dark:hover:text-indigo-300 transition-colors" href="#">Contact</a>
+</div>
+<p class="text-[#7b5549] dark:text-stone-400 text-sm font-body">© 2025 Developed by Karla Lenard</p>
+</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/luxon@3.5.0/build/global/luxon.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="scripts.js"></script>
+</body></html>
