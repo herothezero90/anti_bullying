@@ -1,49 +1,119 @@
-/* eslint-disable no-undef */
+const menuToggle = document.querySelector(".menu-toggle");
+const mobileMenu = document.querySelector("#mobile-menu");
+const modal = document.querySelector("#contact-modal");
+const contactForm = document.querySelector("#contact-form");
+const formState = document.querySelector("#form-state");
+const successState = document.querySelector("#success-state");
+const programSelect = document.querySelector("#program-select");
+const modalOpeners = document.querySelectorAll("[data-modal-open]");
+const modalClosers = document.querySelectorAll("[data-modal-close]");
+const focusableSelector = "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])";
+let previouslyFocusedElement;
 
-$(document).ready(function() {
-    $('.first-button').on('click', function () {
-        $('.animated-icon1').toggleClass('open');
-    });
+function closeMenu() {
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
+    mobileMenu.classList.remove("is-open");
+}
 
-    $('#cta-button').on('click', function() {
-        console.log("'Get Started' button clicked.");
-        $('html, body').animate({
-            scrollTop: $('.services').offset().top
-        }, 800);
-    });
-    
-    $('.service-button').on('click', function() {
-        const serviceName = $(this).siblings('.card-title').text();
-        console.log(`'Learn More' button clicked for ${serviceName}.`);
-        alert(`You clicked on "${serviceName}"! More details coming soon.`);
-    });
+function toggleMenu() {
+    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-expanded", String(!isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
+    mobileMenu.classList.toggle("is-open", !isOpen);
+}
 
-    $('.get-in-touch-button').on('click', function() {
-        console.log("'Get in Touch' button clicked.");
-    });
+function resetModal() {
+    contactForm.reset();
+    formState.hidden = false;
+    successState.hidden = true;
+}
 
-    const $cursor = $('.custom-cursor');
+function openModal(opener) {
+    resetModal();
+    previouslyFocusedElement = opener;
+    modal.hidden = false;
+    document.body.classList.add("modal-open");
 
-    $(document).on('mousemove', function(e) {
-        $cursor.css({
-            left: e.clientX + 'px',
-            top: e.clientY + 'px'
-        });
-    });
-
-    const { DateTime } = luxon;
-
-    function displayCurrentDate() {
-        const now = DateTime.local();
-        const formattedDate = now.toLocaleString(DateTime.DATE_FULL);
-        $('#current-date').text(formattedDate);
+    if (opener.dataset.program) {
+        programSelect.value = opener.dataset.program;
     }
 
-    displayCurrentDate();
+    modal.querySelector("input").focus();
+}
 
-    const msUntilMidnight = DateTime.local().endOf('day').diffNow().toMillis();
-    setTimeout(() => {
-        displayCurrentDate();
-        setInterval(displayCurrentDate, 24 * 60 * 60 * 1000);
-    }, msUntilMidnight);
+function closeModal() {
+    modal.hidden = true;
+    document.body.classList.remove("modal-open");
+
+    if (previouslyFocusedElement) {
+        previouslyFocusedElement.focus();
+    }
+}
+
+function keepFocusInsideModal(event) {
+    if (event.key !== "Tab" || modal.hidden) {
+        return;
+    }
+
+    const focusableElements = [...modal.querySelectorAll(focusableSelector)].filter((element) => element.offsetParent !== null);
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+    } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+    }
+}
+
+menuToggle.addEventListener("click", toggleMenu);
+
+mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
 });
+
+window.addEventListener("resize", () => {
+    if (window.innerWidth > 980) {
+        closeMenu();
+    }
+});
+
+modalOpeners.forEach((opener) => {
+    opener.addEventListener("click", () => openModal(opener));
+});
+
+modalClosers.forEach((closer) => {
+    closer.addEventListener("click", closeModal);
+});
+
+modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.hidden) {
+        closeModal();
+    }
+
+    keepFocusInsideModal(event);
+});
+
+contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+    }
+
+    formState.hidden = true;
+    successState.hidden = false;
+    successState.focus();
+});
+
+document.querySelector("#current-year").textContent = new Date().getFullYear();
