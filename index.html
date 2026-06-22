@@ -8,6 +8,12 @@
     <title>Harmony Initiative | Safer School Communities</title>
     <link rel="icon" type="image/svg+xml" href="./media/favicon.svg">
     <link rel="preload" as="image" href="./media/illustrations/hero-school-scene-v4.webp" type="image/webp" fetchpriority="high">
+    <script>
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            document.documentElement.classList.add("motion-pending");
+            window.setTimeout(() => document.documentElement.classList.remove("motion-pending"), 3500);
+        }
+    </script>
     <style>
         @font-face {
             font-family: "Be Vietnam Pro";
@@ -80,10 +86,12 @@
 
     <main id="top">
         <section class="hero section hero-illustrated">
-            <picture class="hero-picture">
-                <source type="image/webp" srcset="./media/illustrations/hero-school-scene-v4.webp">
-                <img class="hero-image" src="./media/illustrations/hero-school-scene-v4.png" alt="Illustrated cutaway school with students learning, reading, and supporting one another" width="1672" height="941" fetchpriority="high" decoding="async">
-            </picture>
+            <div class="hero-picture">
+                <picture class="hero-base">
+                    <source type="image/webp" srcset="./media/illustrations/hero-school-scene-v4.webp">
+                    <img class="hero-image" src="./media/illustrations/hero-school-scene-v4.png" alt="Illustrated cutaway school with students learning, reading, and supporting one another" width="1672" height="941" fetchpriority="high" decoding="async">
+                </picture>
+            </div>
             <div class="container hero-grid">
                 <div class="hero-copy">
                     <h1>Build a school culture where every student feels safe to <em>belong.</em></h1>
@@ -321,6 +329,7 @@
         </div>
     </div>
 
-    <script src="./scripts.js" defer></script>
+    <script src="./vendor/anime.umd.min.js?v=4.1.3" defer></script>
+    <script src="./scripts.js?v=motion-3" defer></script>
 </body>
 </html>

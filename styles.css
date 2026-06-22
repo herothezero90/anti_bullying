@@ -341,12 +341,32 @@ p {
     background: var(--cream);
 }
 
+.hero-base {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .hero-image {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+.motion-pending .hero-base,
+.motion-ready .hero-base {
+    opacity: 0;
+}
+
+.motion-pending .hero-copy > *,
+.motion-ready .hero-copy > * {
+    opacity: 0;
+}
+
+.hero-animation-complete .hero-base {
+    opacity: 1;
 }
 
 .hero-illustrated .hero-grid {
@@ -652,7 +672,7 @@ p {
 }
 
 .approach {
-    background: #ff704d;
+    background: var(--indigo);
 }
 
 .approach-copy>p:not(.eyebrow) {
@@ -1053,6 +1073,7 @@ textarea {
         object-fit: contain;
         filter: none;
     }
+
 }
 
 @media (min-width: 681px) and (max-width: 1199px) {
@@ -1452,4 +1473,11 @@ textarea {
     .button {
         transition: background 180ms ease, box-shadow 180ms ease, color 180ms ease;
     }
+
+    .hero-base,
+    .hero-copy > * {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
 }
