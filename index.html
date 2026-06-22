@@ -7,9 +7,48 @@
     <meta name="description" content="Harmony Initiative helps schools create safe, supportive learning environments through practical prevention resources, educator training, and student workshops.">
     <title>Harmony Initiative | Safer School Communities</title>
     <link rel="icon" type="image/svg+xml" href="./media/favicon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="./media/illustrations/hero-school-scene-v4.webp" type="image/webp" fetchpriority="high">
+    <style>
+        @font-face {
+            font-family: "Be Vietnam Pro";
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url("./media/fonts/be-vietnam-pro-400.woff2") format("woff2");
+        }
+
+        @font-face {
+            font-family: "Be Vietnam Pro";
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: url("./media/fonts/be-vietnam-pro-500.woff2") format("woff2");
+        }
+
+        @font-face {
+            font-family: "Be Vietnam Pro";
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url("./media/fonts/be-vietnam-pro-700.woff2") format("woff2");
+        }
+
+        @font-face {
+            font-family: "Bricolage Grotesque";
+            font-style: normal;
+            font-weight: 600 800;
+            font-display: swap;
+            src: url("./media/fonts/bricolage-grotesque-latin.woff2") format("woff2");
+        }
+
+        @font-face {
+            font-family: "Plus Jakarta Sans";
+            font-style: normal;
+            font-weight: 600 800;
+            font-display: swap;
+            src: url("./media/fonts/plus-jakarta-sans-latin.woff2") format("woff2");
+        }
+    </style>
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -41,7 +80,10 @@
 
     <main id="top">
         <section class="hero section hero-illustrated">
-            <img class="hero-scene-art" src="./media/illustrations/hero-school-scene-v4.png" alt="Illustrated cutaway school with students learning, reading, and supporting one another">
+            <picture class="hero-picture">
+                <source type="image/webp" srcset="./media/illustrations/hero-school-scene-v4.webp">
+                <img class="hero-image" src="./media/illustrations/hero-school-scene-v4.png" alt="Illustrated cutaway school with students learning, reading, and supporting one another" width="1672" height="941" fetchpriority="high" decoding="async">
+            </picture>
             <div class="container hero-grid">
                 <div class="hero-copy">
                     <h1>Build a school culture where every student feels safe to <em>belong.</em></h1>
@@ -51,12 +93,7 @@
                         <button class="button button-secondary" type="button" data-modal-open>Book a Conversation</button>
                     </div>
                 </div>
-
-                <div class="hero-art hero-art-backup art-frame">
-                    <img src="./media/illustrations/hero-school-scene-v4.png" alt="Illustrated cutaway school with students learning, reading, and supporting one another">
-                </div>
             </div>
-
         </section>
 
         <section class="section how-it-works" id="how-it-works">
@@ -99,7 +136,10 @@
                         <button class="button button-secondary" type="button" data-modal-open>Talk about your school <span aria-hidden="true">→</span></button>
                     </div>
                     <div class="support-art art-frame">
-                        <img src="./media/illustrations/harmony-support-cutout.png" alt="Two students having a calm and supportive conversation">
+                        <picture>
+                            <source type="image/webp" srcset="./media/illustrations/harmony-support-cutout.webp">
+                            <img src="./media/illustrations/harmony-support-cutout.png" alt="Two students having a calm and supportive conversation" width="1536" height="1024" loading="lazy" decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -147,7 +187,10 @@
         <section class="section approach" id="approach">
             <div class="container approach-grid">
                 <div class="approach-art art-frame">
-                    <img src="./media/illustrations/harmony-workshop-cutout.png" alt="Three students listening and talking together">
+                    <picture>
+                        <source type="image/webp" srcset="./media/illustrations/harmony-workshop-cutout.webp">
+                        <img src="./media/illustrations/harmony-workshop-cutout.png" alt="Three students listening and talking together" width="1536" height="1024" loading="lazy" decoding="async">
+                    </picture>
                 </div>
                 <div class="approach-copy">
                     <h2>Prevention becomes stronger when it feels part of everyday life.</h2>
@@ -278,6 +321,6 @@
         </div>
     </div>
 
-    <script src="./scripts.js"></script>
+    <script src="./scripts.js" defer></script>
 </body>
 </html>

@@ -245,7 +245,6 @@ p {
     box-shadow: 0 12px 22px rgba(8, 120, 209, 0.3);
 }
 
-/* header CTA uses the brand coral instead of indigo */
 .site-header .button-primary {
     background: var(--coral);
     box-shadow: 0 8px 18px rgba(255, 91, 53, 0.26);
@@ -333,12 +332,19 @@ p {
     z-index: 1;
 }
 
-.hero-scene-art {
+.hero-picture {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
+    z-index: 0;
     background: var(--cream);
+}
+
+.hero-image {
+    display: block;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
 }
@@ -346,10 +352,6 @@ p {
 .hero-illustrated .hero-grid {
     position: relative;
     z-index: 2;
-}
-
-.hero-illustrated .hero-art-backup {
-    display: none;
 }
 
 .hero h1 em {
@@ -376,11 +378,19 @@ p {
     overflow: visible;
 }
 
-.art-frame img {
+.art-frame img,
+.art-frame picture {
     width: 100%;
     height: 100%;
+}
+
+.art-frame img {
     object-fit: contain;
     filter: drop-shadow(0 16px 18px rgba(36, 34, 60, 0.1));
+}
+
+.art-frame picture {
+    display: block;
 }
 
 .hero-art {
@@ -529,13 +539,10 @@ p {
         grid-template-columns: minmax(0, 680px) minmax(0, 1fr);
     }
 
-    /* roomy screens: give the hero copy a little breathing room from the top */
     .hero-copy {
         padding-top: 48px;
     }
 
-    /* Widen the header and footer to the hero width so the brand/links align
-       with the hero content instead of sitting in a narrower 1180px column. */
     .site-header .nav-shell,
     .site-footer .footer-grid {
         width: min(calc(100% - 96px), 1760px);
@@ -543,17 +550,23 @@ p {
 
 }
 
-/* On the largest monitors span the scene full-bleed from the left to the right
-   edge of the viewport. width:100% + height:auto shows the whole illustration
-   edge to edge (nothing clipped); it is pinned to the bottom so the cream sky at
-   the top blends into the background. The copy on the left stays untouched. */
+@media (min-width: 1200px) and (max-width: 1440px) {
+    .hero h1 {
+        font-size: clamp(3.1rem, 5.2vw, 4.75rem);
+    }
+}
+
 @media (min-width: 1920px) {
-    .hero-scene-art {
+    .hero-picture {
         top: auto;
         bottom: 0;
         left: 0;
         right: 0;
         width: 100%;
+        height: auto;
+    }
+
+    .hero-image {
         height: auto;
         transform: none;
         object-fit: contain;
@@ -862,7 +875,6 @@ details p {
     font-size: 0.72rem;
 }
 
-/* footer sits on coral, so flip its text, links and brand to read on orange */
 .site-footer p,
 .site-footer .brand strong,
 .site-footer .brand small,
@@ -998,45 +1010,44 @@ textarea {
 
 @media (max-width: 1199px) {
     .hero {
+        display: flex;
+        flex-direction: column;
         min-height: calc(100svh - 78px);
         padding: 48px 0 0;
     }
 
-    /* drop the full-bleed background scene; use the stacked layout instead */
-    .hero-scene-art {
-        display: none;
+    .hero-picture {
+        position: static;
+        order: 2;
+        flex: 1 1 auto;
+        display: flex;
+        align-items: flex-end;
+        width: 100%;
+        height: auto;
+        margin-top: 36px;
+        overflow: hidden;
     }
 
-    /* full-bleed grid: copy on top (padded), illustration edge-to-edge below */
+    .hero-grid {
+        order: 1;
+        flex: 0 0 auto;
+    }
+
     .hero-illustrated .hero-grid {
         width: 100%;
-        min-height: calc(100svh - 126px);
-        gap: 36px;
+        min-height: 0;
+        gap: 0;
         grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr;
-        align-items: end;
+        align-items: start;
     }
 
-    /* copy keeps readable side padding even though the grid is full-bleed */
     .hero-copy {
         width: min(calc(100% - 48px), var(--container));
         margin: 0 auto;
     }
 
-    /* illustration spans the full width, edge to edge, anchored to the bottom */
-    .hero-illustrated .hero-art-backup {
-        display: block;
-        align-self: end;
-        width: 100%;
-        max-width: none;
-        margin: 0;
-        aspect-ratio: auto;
-        overflow: hidden;
-    }
-
-    .hero-illustrated .hero-art-backup img {
+    .hero-image {
         position: static;
-        display: block;
         width: 100%;
         height: auto;
         object-fit: contain;
@@ -1044,8 +1055,6 @@ textarea {
     }
 }
 
-/* iPad / tablet band: larger hero heading and intro, and stack the CTA buttons
-   left-aligned (same treatment as mobile) instead of sitting in a row. */
 @media (min-width: 681px) and (max-width: 1199px) {
     .hero h1 {
         font-size: clamp(4rem, 7.4vw, 5.4rem);
@@ -1064,37 +1073,39 @@ textarea {
         gap: 12px;
     }
 
-    /* roomy screens: give the hero copy a little breathing room from the top */
     .hero-copy {
         padding-top: 36px;
     }
 }
 
-/* iPad in landscape: the viewport is wide but short, so the stacked layout pushes
-   the illustration (and even the buttons) below the fold, and a free-floating
-   illustration shows its cut-off cutaway edges. Instead bring back the desktop
-   full-bleed scene: pin it edge-to-edge at the bottom of the viewport (cover, so
-   it is cropped vertically rather than floating) with the copy overlaid on the
-   left. Scoped to landscape tablets only (min-height keeps phones in landscape on
-   their existing layout); portrait, mobile and desktop are unchanged. */
 @media (min-width: 681px) and (max-width: 1199px) and (orientation: landscape) and (min-height: 600px) {
     .hero {
+        display: block;
         padding: 0;
         overflow: hidden;
     }
 
-    /* full-bleed scene, anchored to the bottom edge, cropped to fit the height */
-    .hero-scene-art {
-        display: block;
+    .hero-picture {
+        position: absolute;
         inset: 0;
+        order: unset;
+        flex: unset;
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+        overflow: visible;
+    }
+
+    .hero-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
         object-position: center bottom;
     }
 
-    .hero-illustrated .hero-art-backup {
-        display: none;
+    .hero-grid {
+        order: unset;
     }
 
     .hero-illustrated .hero-grid {
@@ -1238,8 +1249,6 @@ textarea {
     }
 }
 
-/* Grow the hero heading on all phones to fill the spare width. The smallest
-   phones (iPhone SE / 12-13 mini at 375px and below) keep their existing size. */
 @media (min-width: 376px) and (max-width: 680px) {
     .hero h1 {
         font-size: clamp(2.4rem, 10vw, 3rem);
@@ -1250,7 +1259,6 @@ textarea {
     }
 }
 
-/* Pro Max sized phones have extra width, so bump the hero intro up further. */
 @media (min-width: 415px) and (max-width: 680px) {
     .hero .hero-intro {
         font-size: 1.2rem;
@@ -1278,8 +1286,12 @@ textarea {
 
     .hero-illustrated .hero-grid {
         width: 100%;
-        min-height: calc(100svh - 106px);
-        gap: 22px;
+        min-height: 0;
+        gap: 0;
+    }
+
+    .hero-picture {
+        margin-top: 22px;
     }
 
     .hero-copy {
@@ -1306,22 +1318,18 @@ textarea {
     .hero-actions {
         width: fit-content;
         flex-direction: column;
-        /* shrink to the wider button so both stay left-aligned… */
         align-items: stretch;
         gap: 10px;
     }
 
     .hero-actions .button {
-        /* …and stretch to that shared width */
         width: auto;
         min-height: 44px;
         padding: 12px 16px;
         font-size: 0.75rem;
     }
 
-    /* zoom the scene a touch (max-width:100% on img otherwise caps it); the
-       wrapper's overflow:hidden crops the slight overhang on each side. */
-    .hero-illustrated .hero-art-backup img {
+    .hero-illustrated .hero-image {
         width: 118%;
         max-width: none;
         margin-left: -9%;
@@ -1403,5 +1411,45 @@ textarea {
     .modal h2 {
         padding-right: 24px;
         font-size: 1.9rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .button:hover {
+        transform: none;
+    }
+
+    .program-card:hover {
+        transform: none;
+    }
+
+    .text-link {
+        transition: color 180ms ease;
+    }
+
+    .text-link:hover {
+        gap: 8px;
+    }
+
+    summary span {
+        transition: none;
+    }
+
+    details[open] summary span {
+        transform: none;
+    }
+
+    .menu-toggle span {
+        transition: none;
+    }
+
+    .nav-links a,
+    .footer-links a,
+    .button {
+        transition: background 180ms ease, box-shadow 180ms ease, color 180ms ease;
     }
 }
