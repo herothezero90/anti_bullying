@@ -1,23 +1,23 @@
 :root {
-    --cream: #fff9ef;
-    --cream-deep: #f8eddd;
+    --cream: #fbfbfb;
+    --cream-deep: #ffeed6;
     --white: #ffffff;
-    --ink: #24223c;
-    --muted: #655f72;
-    --indigo: #354382;
-    --indigo-dark: #263467;
-    --indigo-soft: #e7e5ef;
-    --coral: #ef765a;
-    --coral-soft: #fbe1d7;
-    --teal: #158e8d;
-    --teal-soft: #d9f1ec;
-    --yellow: #f2b72a;
-    --yellow-soft: #faeab5;
-    --lavender: #80669d;
-    --lavender-soft: #eee5ec;
-    --line: rgba(53, 67, 130, 0.14);
-    --shadow: 0 18px 36px rgba(36, 34, 60, 0.1);
-    --soft-shadow: 7px 7px 0 rgba(49, 65, 145, 0.1);
+    --ink: #14213d;
+    --muted: #536078;
+    --indigo: #0878d1;
+    --indigo-dark: #075ba5;
+    --indigo-soft: #dcefff;
+    --coral: #ff5b35;
+    --coral-soft: #ffd9ce;
+    --teal: #178fd9;
+    --teal-soft: #d9efff;
+    --yellow: #ffc62e;
+    --yellow-soft: #ffedaa;
+    --lavender: #a76ed8;
+    --lavender-soft: #ead7ff;
+    --line: rgba(20, 33, 61, 0.14);
+    --shadow: 0 18px 36px rgba(20, 33, 61, 0.12);
+    --soft-shadow: 7px 7px 0 rgba(20, 33, 61, 0.12);
     --radius-small: 18px;
     --radius: 28px;
     --radius-large: 42px;
@@ -75,7 +75,10 @@ p {
 
 h1,
 h2,
-h3,
+h3 {
+    font-family: "Bricolage Grotesque", sans-serif;
+}
+
 .brand {
     font-family: "Plus Jakarta Sans", sans-serif;
 }
@@ -91,19 +94,19 @@ h1 {
     max-width: 720px;
     margin-bottom: 24px;
     font-size: clamp(3.1rem, 5.7vw, 5.35rem);
-    letter-spacing: -0.075em;
+    letter-spacing: -0.03em;
 }
 
 h2 {
     margin-bottom: 18px;
     font-size: clamp(2.25rem, 4vw, 3.7rem);
-    letter-spacing: -0.065em;
+    letter-spacing: -0.025em;
 }
 
 h3 {
     margin-bottom: 12px;
     font-size: 1.3rem;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.01em;
 }
 
 p {
@@ -128,8 +131,7 @@ p {
     position: sticky;
     top: 0;
     z-index: 20;
-    border-bottom: 1px solid rgba(49, 65, 145, 0.07);
-    background: rgba(255, 249, 239, 0.9);
+    background: rgba(251, 251, 251, 0.92);
     backdrop-filter: blur(18px);
 }
 
@@ -161,7 +163,7 @@ p {
     border-radius: 15px 15px 15px 4px;
     color: var(--white);
     background: var(--indigo);
-    box-shadow: 4px 4px 0 var(--yellow);
+    box-shadow: 4px 4px 0 var(--coral);
     font-size: 1.15rem;
     font-weight: 800;
 }
@@ -235,12 +237,23 @@ p {
 .button-primary {
     color: var(--white);
     background: var(--indigo);
-    box-shadow: 0 8px 18px rgba(49, 65, 145, 0.2);
+    box-shadow: 0 8px 18px rgba(8, 120, 209, 0.24);
 }
 
 .button-primary:hover {
     background: var(--indigo-dark);
-    box-shadow: 0 12px 22px rgba(49, 65, 145, 0.25);
+    box-shadow: 0 12px 22px rgba(8, 120, 209, 0.3);
+}
+
+/* header CTA uses the brand coral instead of indigo */
+.site-header .button-primary {
+    background: var(--coral);
+    box-shadow: 0 8px 18px rgba(255, 91, 53, 0.26);
+}
+
+.site-header .button-primary:hover {
+    background: #e84a26;
+    box-shadow: 0 12px 22px rgba(255, 91, 53, 0.32);
 }
 
 .button-secondary {
@@ -251,6 +264,23 @@ p {
 
 .button-secondary:hover {
     box-shadow: var(--soft-shadow);
+}
+
+.hero-actions .button-primary {
+    box-shadow: 0 6px 14px rgba(8, 120, 209, 0.18);
+}
+
+.hero-actions .button-primary:hover {
+    box-shadow: 0 9px 18px rgba(8, 120, 209, 0.24);
+}
+
+.hero-actions .button-secondary {
+    border: 0;
+    box-shadow: 0 6px 14px rgba(36, 34, 60, 0.08);
+}
+
+.hero-actions .button-secondary:hover {
+    box-shadow: 0 9px 18px rgba(36, 34, 60, 0.12);
 }
 
 .button-light {
@@ -281,9 +311,11 @@ p {
 
 .hero {
     position: relative;
+    display: flex;
+    min-height: calc(100svh - 79px);
+    align-items: center;
     overflow: hidden;
-    padding-top: 82px;
-    padding-bottom: 0;
+    padding: 56px 0;
 }
 
 .hero-grid,
@@ -299,6 +331,25 @@ p {
 .hero-copy {
     position: relative;
     z-index: 1;
+}
+
+.hero-scene-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--cream);
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero-illustrated .hero-grid {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-illustrated .hero-art-backup {
+    display: none;
 }
 
 .hero h1 em {
@@ -318,116 +369,27 @@ p {
     gap: 13px;
 }
 
-.hero-decor {
-    position: absolute;
-    border-radius: 999px;
-    opacity: 0.55;
-    filter: blur(1px);
-}
-
-.hero-decor-one {
-    top: 90px;
-    right: -100px;
-    width: 350px;
-    height: 350px;
-    background: var(--yellow-soft);
-}
-
-.hero-decor-two {
-    bottom: 100px;
-    left: -120px;
-    width: 260px;
-    height: 260px;
-    background: var(--lavender-soft);
-}
-
 .art-frame {
     position: relative;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-large);
-    background: var(--white);
-    box-shadow: var(--shadow);
-    overflow: hidden;
+    border: 0;
+    background: transparent;
+    overflow: visible;
 }
 
 .art-frame img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 18px rgba(36, 34, 60, 0.1));
 }
 
 .hero-art {
-    aspect-ratio: 1.3;
-    border-radius: 52px 52px 52px 15px;
-    box-shadow: 14px 14px 0 rgba(53, 67, 130, 0.13);
+    aspect-ratio: 1.35;
 }
 
 .hero-art img {
     position: absolute;
     inset: 0;
-}
-
-.benefit-strip {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    margin-top: 74px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: var(--white);
-    box-shadow: 0 14px 25px rgba(36, 34, 60, 0.05);
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.benefit-strip > div {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 20px 23px;
-}
-
-.benefit-strip > div + div {
-    border-left: 1px solid var(--line);
-}
-
-.benefit-strip strong,
-.benefit-strip small {
-    display: block;
-}
-
-.benefit-strip strong {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 0.82rem;
-}
-
-.benefit-strip small {
-    color: var(--muted);
-    font-size: 0.69rem;
-}
-
-.benefit-icon {
-    display: grid;
-    flex: 0 0 auto;
-    width: 43px;
-    height: 43px;
-    place-items: center;
-    border-radius: 14px;
-    font-weight: 700;
-}
-
-.benefit-icon-coral {
-    color: var(--coral);
-    background: var(--coral-soft);
-}
-
-.benefit-icon-teal {
-    color: var(--teal);
-    background: var(--teal-soft);
-}
-
-.benefit-icon-yellow {
-    color: #9a6a00;
-    background: var(--yellow-soft);
 }
 
 .heading-centered {
@@ -440,7 +402,7 @@ p {
     justify-content: center;
 }
 
-.section-heading > p:last-child {
+.section-heading>p:last-child {
     margin-bottom: 0;
 }
 
@@ -457,31 +419,31 @@ p {
 .program-card {
     min-height: 300px;
     padding: 25px 22px;
-    border: 1px solid rgba(49, 65, 145, 0.09);
+    border: 0;
     border-radius: var(--radius);
-    box-shadow: 6px 6px 0 rgba(49, 65, 145, 0.09);
+    box-shadow: 6px 6px 0 rgba(20, 33, 61, 0.13);
     transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .program-card:hover {
     transform: translateY(-7px);
-    box-shadow: 9px 12px 0 rgba(49, 65, 145, 0.11);
+    box-shadow: 9px 12px 0 rgba(20, 33, 61, 0.16);
 }
 
 .program-card-coral {
-    background: var(--coral-soft);
+    background: #ff704d;
 }
 
 .program-card-teal {
-    background: var(--teal-soft);
+    background: #1689d5;
 }
 
 .program-card-yellow {
-    background: var(--yellow-soft);
+    background: var(--yellow);
 }
 
 .program-card-lavender {
-    background: var(--lavender-soft);
+    background: #b784e2;
 }
 
 .program-icon {
@@ -491,8 +453,8 @@ p {
     margin-bottom: 28px;
     place-items: center;
     border-radius: 15px;
-    color: var(--white);
-    background: var(--indigo);
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.82);
     font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 0.75rem;
     font-weight: 800;
@@ -502,6 +464,24 @@ p {
     margin-bottom: 23px;
     font-size: 0.86rem;
     line-height: 1.7;
+}
+
+.program-card-teal h3,
+.program-card-teal p,
+.program-card-teal .text-link {
+    color: var(--white);
+}
+
+.program-card-coral p,
+.program-card-yellow p,
+.program-card-lavender p {
+    color: #29334a;
+}
+
+.program-card-coral .text-link,
+.program-card-yellow .text-link,
+.program-card-lavender .text-link {
+    color: var(--ink);
 }
 
 .text-link {
@@ -523,7 +503,61 @@ p {
 }
 
 .how-it-works {
-    background: var(--indigo);
+    background: #0878d1;
+}
+
+@media (min-width: 981px) {
+    .how-it-works {
+        display: flex;
+        min-height: 100svh;
+        align-items: center;
+    }
+}
+
+@media (min-width: 1200px) {
+    .hero {
+        min-height: calc(100svh - 78px);
+    }
+
+    .hero-illustrated {
+        align-items: flex-start;
+    }
+
+    .hero-illustrated .hero-grid {
+        width: min(calc(100% - 96px), 1760px);
+        gap: 0;
+        grid-template-columns: minmax(0, 680px) minmax(0, 1fr);
+    }
+
+    /* roomy screens: give the hero copy a little breathing room from the top */
+    .hero-copy {
+        padding-top: 48px;
+    }
+
+    /* Widen the header and footer to the hero width so the brand/links align
+       with the hero content instead of sitting in a narrower 1180px column. */
+    .site-header .nav-shell,
+    .site-footer .footer-grid {
+        width: min(calc(100% - 96px), 1760px);
+    }
+
+}
+
+/* On the largest monitors span the scene full-bleed from the left to the right
+   edge of the viewport. width:100% + height:auto shows the whole illustration
+   edge to edge (nothing clipped); it is pinned to the bottom so the cream sky at
+   the top blends into the background. The copy on the left stays untouched. */
+@media (min-width: 1920px) {
+    .hero-scene-art {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: auto;
+        transform: none;
+        object-fit: contain;
+    }
 }
 
 .heading-split {
@@ -539,12 +573,15 @@ p {
     color: var(--yellow-soft);
 }
 
-.how-it-works h2,
+.how-it-works h2 {
+    color: var(--coral);
+}
+
 .cta-card h2 {
     color: var(--white);
 }
 
-.how-it-works .heading-split > p {
+.how-it-works .heading-split>p {
     color: var(--indigo-soft);
 }
 
@@ -557,19 +594,19 @@ p {
 .step-card {
     display: flex;
     gap: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 0;
     border-radius: var(--radius);
     padding: 25px 22px 21px;
-    background: rgba(255, 255, 255, 0.09);
+    background: var(--white);
 }
 
 .step-card h3 {
-    color: var(--white);
+    color: var(--ink);
 }
 
 .step-card p {
     margin-bottom: 0;
-    color: var(--indigo-soft);
+    color: var(--muted);
     font-size: 0.84rem;
 }
 
@@ -587,22 +624,35 @@ p {
     font-weight: 800;
 }
 
+.step-card:nth-child(2) .step-number {
+    color: var(--white);
+    background: var(--coral);
+}
+
+.step-card:nth-child(3) .step-number {
+    color: var(--white);
+    background: var(--lavender);
+}
+
 .approach-grid {
     grid-template-columns: 0.98fr 1.02fr;
 }
 
+.approach {
+    background: #ff704d;
+}
+
+.approach-copy>p:not(.eyebrow) {
+    color: #30384d;
+}
+
 .approach-art,
 .support-art {
-    aspect-ratio: 1.07;
+    aspect-ratio: 1.35;
 }
 
-.approach-art {
-    border-radius: 44px 44px 14px 44px;
-    box-shadow: -13px 13px 0 var(--teal-soft);
-}
-
-.approach-copy > p:not(.eyebrow),
-.support-copy > p:not(.eyebrow) {
+.approach-copy>p:not(.eyebrow),
+.support-copy>p:not(.eyebrow) {
     margin-bottom: 24px;
 }
 
@@ -611,16 +661,17 @@ p {
     gap: 9px;
 }
 
-.approach-list > div {
+.approach-list>div {
     display: flex;
     align-items: center;
     gap: 13px;
     padding: 12px 14px;
     border-radius: 15px;
     background: var(--white);
+    box-shadow: 4px 4px 0 rgba(20, 33, 61, 0.06);
 }
 
-.approach-list > div > span {
+.approach-list>div>span {
     display: grid;
     flex: 0 0 auto;
     width: 28px;
@@ -628,8 +679,17 @@ p {
     place-items: center;
     border-radius: 50%;
     color: var(--white);
-    background: var(--teal);
+    background: var(--indigo);
     font-size: 0.73rem;
+}
+
+.approach-list>div:nth-child(2)>span {
+    background: var(--coral);
+}
+
+.approach-list>div:nth-child(3)>span {
+    color: var(--ink);
+    background: var(--yellow);
 }
 
 .approach-list p {
@@ -651,17 +711,25 @@ p {
     font-size: 0.73rem;
 }
 
-.support {
-    background: var(--coral-soft);
-}
-
 .support-grid {
     grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
 }
 
-.support-art {
-    border-radius: 44px 14px 44px 44px;
-    box-shadow: 13px 13px 0 rgba(247, 120, 93, 0.22);
+.process-support {
+    margin-top: 104px;
+    padding-top: 96px;
+}
+
+.process-support h2 {
+    color: var(--coral);
+}
+
+.process-support .support-copy>p {
+    color: var(--indigo-soft);
+}
+
+.support-copy .button-secondary {
+    border: 0;
 }
 
 .faq-grid {
@@ -680,9 +748,26 @@ p {
 }
 
 details {
-    border: 1px solid var(--line);
+    border: 0;
     border-radius: var(--radius-small);
     background: var(--white);
+    box-shadow: 4px 4px 0 rgba(20, 33, 61, 0.06);
+}
+
+.faq-list details:nth-child(1) {
+    border-left: 5px solid var(--coral);
+}
+
+.faq-list details:nth-child(2) {
+    border-left: 5px solid var(--indigo);
+}
+
+.faq-list details:nth-child(3) {
+    border-left: 5px solid var(--yellow);
+}
+
+.faq-list details:nth-child(4) {
+    border-left: 5px solid var(--lavender);
 }
 
 summary {
@@ -733,7 +818,7 @@ details p {
     overflow: hidden;
     border-radius: var(--radius-large);
     padding: 49px 55px;
-    background: var(--indigo);
+    background: #8e58c7;
 }
 
 .cta-card h2 {
@@ -751,15 +836,14 @@ details p {
     line-height: 1;
 }
 
-.cta-card > *:not(.cta-decoration) {
+.cta-card>*:not(.cta-decoration) {
     position: relative;
     z-index: 1;
 }
 
 .site-footer {
-    border-top: 1px solid var(--line);
     padding: 30px 0;
-    background: var(--white);
+    background: var(--coral);
 }
 
 .footer-grid {
@@ -778,6 +862,25 @@ details p {
     font-size: 0.72rem;
 }
 
+/* footer sits on coral, so flip its text, links and brand to read on orange */
+.site-footer p,
+.site-footer .brand strong,
+.site-footer .brand small,
+.site-footer .footer-links a {
+    color: var(--white);
+}
+
+.site-footer .footer-links a:hover {
+    color: var(--white);
+    opacity: 0.75;
+}
+
+.site-footer .brand-mark {
+    color: var(--coral);
+    background: var(--white);
+    box-shadow: 4px 4px 0 rgba(20, 33, 61, 0.2);
+}
+
 .modal[hidden] {
     display: none;
 }
@@ -790,7 +893,7 @@ details p {
     overflow-y: auto;
     place-items: center;
     padding: 24px;
-    background: rgba(36, 34, 60, 0.46);
+    background: rgba(20, 33, 61, 0.52);
     backdrop-filter: blur(8px);
 }
 
@@ -801,7 +904,7 @@ details p {
     border-radius: var(--radius);
     padding: 35px;
     background: var(--cream);
-    box-shadow: 0 25px 70px rgba(36, 34, 60, 0.24);
+    box-shadow: 0 25px 70px rgba(20, 33, 61, 0.26);
 }
 
 .modal-close {
@@ -835,7 +938,7 @@ form {
     gap: 13px;
 }
 
-label > span {
+label>span {
     display: block;
     margin-bottom: 5px;
     color: var(--ink);
@@ -893,6 +996,133 @@ textarea {
     margin-bottom: 24px;
 }
 
+@media (max-width: 1199px) {
+    .hero {
+        min-height: calc(100svh - 78px);
+        padding: 48px 0 0;
+    }
+
+    /* drop the full-bleed background scene; use the stacked layout instead */
+    .hero-scene-art {
+        display: none;
+    }
+
+    /* full-bleed grid: copy on top (padded), illustration edge-to-edge below */
+    .hero-illustrated .hero-grid {
+        width: 100%;
+        min-height: calc(100svh - 126px);
+        gap: 36px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        align-items: end;
+    }
+
+    /* copy keeps readable side padding even though the grid is full-bleed */
+    .hero-copy {
+        width: min(calc(100% - 48px), var(--container));
+        margin: 0 auto;
+    }
+
+    /* illustration spans the full width, edge to edge, anchored to the bottom */
+    .hero-illustrated .hero-art-backup {
+        display: block;
+        align-self: end;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        aspect-ratio: auto;
+        overflow: hidden;
+    }
+
+    .hero-illustrated .hero-art-backup img {
+        position: static;
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        filter: none;
+    }
+}
+
+/* iPad / tablet band: larger hero heading and intro, and stack the CTA buttons
+   left-aligned (same treatment as mobile) instead of sitting in a row. */
+@media (min-width: 681px) and (max-width: 1199px) {
+    .hero h1 {
+        font-size: clamp(4rem, 7.4vw, 5.4rem);
+    }
+
+    .hero-intro {
+        max-width: 600px;
+        font-size: 1.3rem;
+        line-height: 1.5;
+    }
+
+    .hero-actions {
+        width: fit-content;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    /* roomy screens: give the hero copy a little breathing room from the top */
+    .hero-copy {
+        padding-top: 36px;
+    }
+}
+
+/* iPad in landscape: the viewport is wide but short, so the stacked layout pushes
+   the illustration (and even the buttons) below the fold, and a free-floating
+   illustration shows its cut-off cutaway edges. Instead bring back the desktop
+   full-bleed scene: pin it edge-to-edge at the bottom of the viewport (cover, so
+   it is cropped vertically rather than floating) with the copy overlaid on the
+   left. Scoped to landscape tablets only (min-height keeps phones in landscape on
+   their existing layout); portrait, mobile and desktop are unchanged. */
+@media (min-width: 681px) and (max-width: 1199px) and (orientation: landscape) and (min-height: 600px) {
+    .hero {
+        padding: 0;
+        overflow: hidden;
+    }
+
+    /* full-bleed scene, anchored to the bottom edge, cropped to fit the height */
+    .hero-scene-art {
+        display: block;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center bottom;
+    }
+
+    .hero-illustrated .hero-art-backup {
+        display: none;
+    }
+
+    .hero-illustrated .hero-grid {
+        width: min(calc(100% - 48px), var(--container));
+        min-height: calc(100svh - 78px);
+        margin-inline: auto;
+        gap: 0;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        align-items: start;
+    }
+
+    .hero-copy {
+        width: min(100%, 540px);
+        margin: 0;
+        padding-top: 44px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 4.7vw, 3.5rem);
+    }
+
+    .hero-intro {
+        max-width: none;
+        font-size: 1.1rem;
+    }
+}
+
 @media (max-width: 980px) {
     .nav-shell {
         position: relative;
@@ -904,16 +1134,20 @@ textarea {
         height: 46px;
         place-content: center;
         gap: 5px;
-        border: 1px solid var(--line);
+        border: 0;
         border-radius: 14px;
-        background: var(--white);
+        background: var(--indigo);
+    }
+
+    .menu-toggle[aria-expanded="true"] {
+        background: var(--coral);
     }
 
     .menu-toggle span {
         display: block;
         width: 19px;
         height: 2px;
-        background: var(--indigo);
+        background: var(--white);
         transition: transform 180ms ease, opacity 180ms ease;
     }
 
@@ -938,10 +1172,11 @@ textarea {
         align-items: stretch;
         gap: 5px;
         border: 1px solid var(--line);
+        border-top: 0;
         border-radius: 0 0 18px 18px;
         padding: 13px 16px 17px;
-        background: rgba(255, 249, 239, 0.98);
-        box-shadow: 0 14px 22px rgba(36, 34, 60, 0.08);
+        background: rgba(251, 251, 251, 0.98);
+        box-shadow: 0 14px 22px rgba(20, 33, 61, 0.1);
     }
 
     .nav-links.is-open {
@@ -961,10 +1196,6 @@ textarea {
     .support-grid {
         gap: 40px;
         grid-template-columns: 1fr;
-    }
-
-    .hero {
-        padding-top: 64px;
     }
 
     .hero-art {
@@ -1007,6 +1238,25 @@ textarea {
     }
 }
 
+/* Grow the hero heading on all phones to fill the spare width. The smallest
+   phones (iPhone SE / 12-13 mini at 375px and below) keep their existing size. */
+@media (min-width: 376px) and (max-width: 680px) {
+    .hero h1 {
+        font-size: clamp(2.4rem, 10vw, 3rem);
+    }
+
+    .hero .hero-intro {
+        font-size: 0.95rem;
+    }
+}
+
+/* Pro Max sized phones have extra width, so bump the hero intro up further. */
+@media (min-width: 415px) and (max-width: 680px) {
+    .hero .hero-intro {
+        font-size: 1.2rem;
+    }
+}
+
 @media (max-width: 680px) {
     .container {
         width: min(calc(100% - 30px), var(--container));
@@ -1022,13 +1272,25 @@ textarea {
     }
 
     .hero {
-        padding-top: 38px;
-        padding-bottom: 0;
+        min-height: calc(100svh - 78px);
+        padding: 28px 0 0;
+    }
+
+    .hero-illustrated .hero-grid {
+        width: 100%;
+        min-height: calc(100svh - 106px);
+        gap: 22px;
+    }
+
+    .hero-copy {
+        width: min(calc(100% - 30px), var(--container));
+        min-width: 0;
+        margin: 0 auto;
     }
 
     h1 {
-        margin-bottom: 18px;
-        font-size: clamp(2.42rem, 11.8vw, 3.05rem);
+        margin-bottom: 14px;
+        font-size: clamp(2.15rem, 9.4vw, 2.6rem);
     }
 
     h2 {
@@ -1036,30 +1298,37 @@ textarea {
     }
 
     .hero-intro {
-        margin-bottom: 21px;
-        font-size: 0.9rem;
-        line-height: 1.58;
+        margin-bottom: 18px;
+        font-size: 0.84rem;
+        line-height: 1.52;
     }
 
-    .hero-actions,
+    .hero-actions {
+        width: fit-content;
+        flex-direction: column;
+        /* shrink to the wider button so both stay left-aligned… */
+        align-items: stretch;
+        gap: 10px;
+    }
+
     .hero-actions .button {
-        width: 100%;
+        /* …and stretch to that shared width */
+        width: auto;
+        min-height: 44px;
+        padding: 12px 16px;
+        font-size: 0.75rem;
+    }
+
+    /* zoom the scene a touch (max-width:100% on img otherwise caps it); the
+       wrapper's overflow:hidden crops the slight overhang on each side. */
+    .hero-illustrated .hero-art-backup img {
+        width: 118%;
+        max-width: none;
+        margin-left: -9%;
     }
 
     .hero-art {
-        aspect-ratio: 1.42;
-        border-radius: 34px 34px 34px 12px;
-        box-shadow: 9px 9px 0 rgba(53, 67, 130, 0.13);
-    }
-
-    .benefit-strip {
-        margin-top: 53px;
-        grid-template-columns: 1fr;
-    }
-
-    .benefit-strip > div + div {
-        border-top: 1px solid var(--line);
-        border-left: 0;
+        aspect-ratio: 1.35;
     }
 
     .programs {
@@ -1090,18 +1359,18 @@ textarea {
         grid-template-columns: 1fr;
     }
 
+    .process-support {
+        margin-top: 70px;
+        padding-top: 60px;
+    }
+
     .step-card {
         padding: 20px 18px 17px;
     }
 
     .approach-art,
     .support-art {
-        aspect-ratio: 1.08;
-        border-radius: 32px 32px 12px 32px;
-    }
-
-    .support-art {
-        border-radius: 32px 12px 32px 32px;
+        aspect-ratio: 1.35;
     }
 
     .cta-card {
